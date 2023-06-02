@@ -1,0 +1,21 @@
+<div class="navbar">
+  <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/users/writeblog">Write a Blog</li>
+      <li><a href="#">Chat</a></li>
+      <li><a href="#">Members</a></li>
+      <%if(locals.user){%>
+        <li><a href="/users/profile"><%=locals.user.name%></a></li>
+        <li><a href="/users/signout">SignOut</a></li>
+      <%}else {%>
+        <li><a href="/users/signup">SignUp</a></li>
+        <li><a href="/users/login">Login</a></li>
+        <%}%>
+
+  </ul>
+  <div class="logo"> 
+      <img class="logo-icon" src="../assets/images/logo.png" alt="">
+      <span> | </span> 
+      <div class="logo-text"> <h4>IIITN <br> Alumni Society</h4> </div>
+  </div>
+</div>

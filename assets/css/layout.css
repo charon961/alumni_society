@@ -1,0 +1,257 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+      font-family: 'Merriweather Sans', sans-serif;
+    
+    }
+
+body,
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.logo {
+  padding: 4rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  width: 5rem;
+}
+
+.logo-text {
+  margin-top: 10px;
+  padding: 0.5rem;
+}
+
+.withlove {
+  padding: 2rem;
+}
+
+.flex-class {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar,
+.footer {
+  width: 100vw;
+  height: 10vh;
+  background-color: whitesmoke;
+  /* box-shadow: 3px 3px 8px rgba(255, 172, 65, 0.3); */
+  /* box-shadow: 1px 1px 10px #797979; */
+
+  color: black;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  scrollbar-width: none;
+}
+
+.footer {
+  height: 7vh;
+
+}
+
+.footer-div {
+  background-color: rgba(249, 199, 132, 0.3);
+  position: fixed;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            /* Height of the footer*/
+            height: 40px;
+            
+}
+
+.navbar ul,
+.footer ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0 1.5vh;
+  /* overflow-y: hidden; */
+  
+
+}
+
+.navbar ul li,
+.footer ul li {
+  font-weight: 700;
+  font: Merriweather;
+  /* font-weight: ; */
+  font-style: normal;
+  margin: 1vh 3vh;
+}
+
+.navbar ul li a,
+.footer ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 3vh;
+
+}
+
+
+.cover-img{
+      display: flex;
+      height: 525px;
+      width: 601px;
+      margin: auto auto;
+      top: 32px;
+      top: auto;
+      margin-top: 82px;
+      /* border: 3px solid red; */
+}
+
+button {   
+      background-color: #4CAF50;   
+      width: 100%;  
+       color: orange;   
+       padding: 15px;   
+       margin: 10px 0px;   
+       border: none;   
+       cursor: pointer;   
+        }   
+form {   
+       border: 3px solid #f1f1f1;   
+   }   
+input[type=text], input[type=password] {   
+       width: 100%;   
+       margin: 8px 0;  
+       padding: 12px 20px;   
+       display: inline-block;   
+       border: 2px solid green;   
+       box-sizing: border-box;   
+   }  
+button:hover {   
+       opacity: 0.7;   
+   }   
+ .cancelbtn {   
+       width: auto;   
+       padding: 10px 18px;  
+       margin: 10px 5px;  
+   }   
+       
+    
+.container {   
+       padding: 25px;   
+       background-color: lightblue;  
+   }   
+
+
+   .card-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 20px;
+  }
+  
+  .card {
+    flex-basis: calc(25% - 20px);
+    background-color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    font-size: 14px;
+    line-height: 1.5;
+    height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .card {
+      flex-basis: calc(33.33% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      flex-basis: calc(50% - 20px);
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .card {
+      flex-basis: calc(100% - 20px);
+      margin-right: 0;
+    }
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .card-heading {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    font-size: 14px;
+    line-height: 1.5;
+    height: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .card:hover .read-more {
+    display: block;
+  }
+  
+  .read-more {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    transition: opacity 0.3s;
+    cursor: pointer;
+  }
+  
+  .read-more:hover {
+    opacity: 0.8;
+  }
+
+  /* .blog-section{
+    display: flex;
+    border: 2px solid red;
+    align-items: center;
+    justify-content: center;
+  }
+#*/
+  .head-blog-section{
+    display: flex;
+    /* border: 2px solid green; */
+    width: 126px;
+    /* justify-content: center; */
+    margin: auto;
+    padding: 10px;
+  } 

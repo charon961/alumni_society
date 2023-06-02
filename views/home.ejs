@@ -1,0 +1,37 @@
+
+     <link rel="stylesheet" href="../assets/css/layout.css">
+
+     <div class="cover-img">
+          <img src="../assets/images/cover.jpg" alt="">
+     </div>
+
+
+<section>
+<div class="head-blog-section">
+     Daily-Blogs
+ </div>
+
+ <div class="card-gallery">
+     <%for( let i of post){%>
+                    <div class="card">
+                         <h3 class="card-heading">Author: <%=i.user.name%></h3>
+                         <p class="card-description"><%=i.content%></p>
+                        
+                            <div class="read-more"><a href="/users/<%=i._id%>">Read the full blog</a></div>
+                       </div>
+     <%}%>
+</div>
+
+</section>
+
+
+   
+
+    
+
+
+  
+  
+
+
+     
