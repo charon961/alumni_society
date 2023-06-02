@@ -7,7 +7,7 @@ const commentschema=new mongoose.Schema({
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Post'
+        ref:'User'
     },
     post:{
         type:mongoose.Schema.Types.ObjectId,

@@ -10,7 +10,8 @@ router.get('/signout',usersController.destroySession);
 router.post('/create',usersController.create);
 router.get('/writeblog',passport.checkAuthentication,usersController.writeblog);
 router.post('/createblog',passport.checkAuthentication,usersController.createblog);
-router.get('/:id',usersController.viewpost)
+router.get('/:id',passport.checkAuthentication,usersController.viewpost)
+router.post('/create_comment',usersController.create_comment);
 router.post('/create_session',passport.authenticate(
        'local',
        {failureRedirect:'/users/signup'},

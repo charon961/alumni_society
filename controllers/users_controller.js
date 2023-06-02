@@ -1,7 +1,7 @@
 const cookieParser = require('cookie-parser');
 const User=require('../models/user')
 const Post=require('../models/post');
-const { Console } = require('console');
+const Comment=require('../models/comment')
 module.exports.profile=function(req,res){
        // for creating a sesssion cookie method is used to send res(singuler)
 
@@ -76,6 +76,7 @@ module.exports.create=function(req,res){
 
 
 module.exports.createblog=function(req,res){
+      
      Post.create({
       content:req.body.content,
       user:req.user._id
@@ -86,10 +87,18 @@ module.exports.createblog=function(req,res){
 }
 
 module.exports.viewpost=function(req,res){
-      Post.findById(req.params.id).populate('user').exec(function(err,post){
-            return res.render('viewpost',{
-                  post:post
-            })
+      //  Post.findById(req.params.id,function(err,post){
+      //       return res.render('viewpost',{
+      //            post:post 
+      //       })
+      //  })
+      Post.findById(req.params.id).populate('user')
+      .exec(function(err,post){
+            console.log(post)
+             return res.render('viewpost',{
+                    post:post,
+             })
+           //  return res.redirect('/');
       })
        
 }
@@ -135,3 +144,23 @@ module.exports.writeblog=function(req,res){
       return res.render('blog');
   }
  
+module.exports.create_comment=function(req,res){
+      console.log(req)
+    Post.findById(req.body.post,function(err,post){
+        if(post){
+           Comment.create({
+            content:req.body.content,
+            post:req.body.post,
+            user:req.user._id
+           },function(err,comment){
+              if(err){"error in adding comment"}
+              else{
+                   post.comments.push(comment);
+                   //after update we have to save
+                   post.save();
+                   res.redirect('back');
+              }
+           })
+        }
+    })
+}

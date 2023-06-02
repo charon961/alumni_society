@@ -89,7 +89,7 @@
   <div class="blog-container">
     <div class="author-section">
       <img class="author-profile-picture" src="../assets/images/pp.jpeg" alt="Author Profile Picture">
-      <h2 class="author-name"><%=post.user.name%></h2>
+         <h2 class="author-name"><%=post.user.name%></h2>
     </div>
     
     <div class="blog-content">
@@ -99,27 +99,25 @@
     </div>
     
     <div class="comment-form">
-      <form>
-        <textarea name="comment" placeholder="Write your comment"></textarea>
-        <br>
-        <input type="submit" value="Add Comment">
-      </form>
+        <form action="/users/create_comment" method="post">
+          <input type="text" name="content"  placeholder="Type comment here...">
+          <input type="hidden"  name="post" value="<%=post._id%>"  >
+          <input type="submit"  value="Add Comment">
+        </form>
+      </div>
+
+      <div class="comments">
+        <div class="comment">
+          <%for (let j of post.comments){%>
+          <p class="comment-content"><%=j%></p>
+          <span class="delete-comment">Delete</span>
+          <%}%>
+          
+        </div>
+   
+      
+      <p class="delete-blog">Delete Blog</p>
     </div>
     
-    <div class="comments">
-      <div class="comment">
-        <p class="comment-content">This is the first comment.</p>
-        <span class="delete-comment">Delete</span>
-      </div>
-      <div class="comment">
-        <p class="comment-content">This is the second comment.</p>
-        <span class="delete-comment">Delete</span>
-      </div>
-      <div class="comment">
-        <p class="comment-content">This is the third comment.</p>
-        <span class="delete-comment">Delete</span>
-      </div>
-    </div>
+
     
-    <p class="delete-blog">Delete Blog</p>
-  </div>
