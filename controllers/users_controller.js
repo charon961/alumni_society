@@ -92,6 +92,8 @@ module.exports.viewpost=function(req,res){
       //            post:post 
       //       })
       //  })
+
+      //to do changes so tha commnent also get populate here so tha i can exract comment content
       Post.findById(req.params.id).populate('user')
       .exec(function(err,post){
             console.log(post)
