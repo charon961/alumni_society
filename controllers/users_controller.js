@@ -179,11 +179,10 @@ module.exports.destroy=function(req,res){
             //     console.log(req.user._id, post.user)
                 
                    if(String(post.user)==String(req.user._id)){
-                      console.log("enter 2")
                          post.remove();
                          Comment.deleteMany({post:req.params.id},function(err){
                                 if(err){console.log("error in removing comments");}
-                                   console.log("This post id deleted!!!!!!!")
+                              //      console.log("This post is deleted!!!!!!!")
                                 return res.redirect('/');
                          })
                    }
@@ -200,19 +199,33 @@ module.exports.destroy=function(req,res){
 }
 
 module.exports.destroy_comment=function(req,res){
+
         Comment.findById(req.params.id,function(err,comment){
               if(err){console.log(err); return;}
                 if(comment){
-                  if(String(comment.user)==String(req.user._id)){
-                          const post_id=comment.post;
-                          comment.remove();
-                          Post.findByIdAndUpdate(post_id,{$pull:{comments:req.params.id}},function(err,post){
-                              return res.redirect('back');
-                          })
-                     }
-                     else{
-                        return res.redirect('back');
-                     }
+
+                  if (comment.id.match(/^[0-9a-fA-F]{24}$/)) {
+                        Comment.findById(comment.id)
+                        .populate('post')
+
+                        .exec(function(err, comments){
+                        //     console.log(comments.user)
+                        //     console.log(req.user)
+                            if(String(comments.post.user)==String(req.user._id)||String(comments.user._id)==String(req.user._id)){
+                              const post_id=comment.post;
+                              const comment_id=comment._id;
+                              comment.remove();
+                              Post.findByIdAndUpdate(post_id,{$pull:{comments:comment_id}},function(err,post){
+                                  return res.redirect('back');
+                              })
+                         }
+                         else{
+                            return res.redirect('back');
+                         }
+            
+                        })
+               
+                  }
                 }
                 else{
                     return res.redirect('back');

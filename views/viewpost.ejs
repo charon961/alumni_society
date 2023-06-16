@@ -110,13 +110,18 @@
         <div class="comment">
           <%for (let j of post.comments){%>
           <p class="comment-content"><%=j.content%> &nbsp; <small> User: <%=j.user.name%></small></p>
-          <span class="delete-comment"><a href="/users/destroy_comment/<%=j._id%>">Delete</a> </span>
+         <!-- <% if(locals.user.id==j.user.id||locals.user.id==post.user.id){%> -->
+            <span class="delete-comment"><a href="/users/destroy_comment/<%=j._id%>">Delete</a> </span>
+        <!-- <%  }%> -->
+         
           <%}%>
           
         </div>
    
+        <% if(locals.user.id==post.user.id){%>
       
       <p class="delete-blog"> <a href="/users/destroy_post/<%=post._id%>">Delete Blog</a> </p>
+        <%}%>
     </div>
     
 
