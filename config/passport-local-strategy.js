@@ -47,7 +47,7 @@ passport.checkAuthentication=function(req,res,next){
          return next();
     }
     else{
-        console.log("Not Authenticated");
+
         return res.redirect('/users/signup');
     }
    

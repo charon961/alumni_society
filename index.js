@@ -63,6 +63,8 @@ app.use(passport.session());
 app.use(passport.setAuthenticated);
 
 //always keep at the end of layouts
+
+
 app.use('/',require('./routes'));
 
 app.listen(3000,function(err){

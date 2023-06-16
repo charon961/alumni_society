@@ -4,6 +4,8 @@ const usersController=require('../controllers/users_controller')
 const passport=require('passport');
 
 router.get('/profile',passport.checkAuthentication,usersController.profile);
+router.get('/destroy_post/:id',usersController.destroy)
+router.get('/destroy_comment/:id',passport.checkAuthentication,usersController.destroy_comment)
 router.get('/signup',usersController.signup);
 router.get('/login',usersController.login);
 router.get('/signout',usersController.destroySession);

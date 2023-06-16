@@ -87,21 +87,28 @@ module.exports.createblog=function(req,res){
 }
 
 module.exports.viewpost=function(req,res){
-      //  Post.findById(req.params.id,function(err,post){
-      //       return res.render('viewpost',{
-      //            post:post 
-      //       })
-      //  })
+      if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
+            Post.findById(req.params.id)
+            .populate('user')
+             .populate({
+                  path: 'comments',
+                  populate: {
+                      path: 'user'
+                  }
+              })
+            .exec(function(err, posts){
+               // console.log(posts,"this ")
+                  if(err){console.log(err); return;}
+                  else{
+                   return res.render('viewpost',{
+                          post:posts,
+                   })
+                 }
+                //  return res.redirect('/');
 
-      //to do changes so tha commnent also get populate here so tha i can exract comment content
-      Post.findById(req.params.id).populate('user')
-      .exec(function(err,post){
-            console.log(post)
-             return res.render('viewpost',{
-                    post:post,
-             })
-           //  return res.redirect('/');
-      })
+            })
+   
+      }
        
 }
 module.exports.create_session=function(req,res){
@@ -147,7 +154,6 @@ module.exports.writeblog=function(req,res){
   }
  
 module.exports.create_comment=function(req,res){
-      console.log(req)
     Post.findById(req.body.post,function(err,post){
         if(post){
            Comment.create({
@@ -165,4 +171,51 @@ module.exports.create_comment=function(req,res){
            })
         }
     })
+}
+
+module.exports.destroy=function(req,res){
+      Post.findById(req.params.id,function(err,post){
+            if(post){ 
+            //     console.log(req.user._id, post.user)
+                
+                   if(String(post.user)==String(req.user._id)){
+                      console.log("enter 2")
+                         post.remove();
+                         Comment.deleteMany({post:req.params.id},function(err){
+                                if(err){console.log("error in removing comments");}
+                                   console.log("This post id deleted!!!!!!!")
+                                return res.redirect('/');
+                         })
+                   }
+                   else{
+                      return res.redirect('/');
+                   }
+
+            }
+            else{
+                  return res.redirect('/');
+            }
+     })
+
+}
+
+module.exports.destroy_comment=function(req,res){
+        Comment.findById(req.params.id,function(err,comment){
+              if(err){console.log(err); return;}
+                if(comment){
+                  if(String(comment.user)==String(req.user._id)){
+                          const post_id=comment.post;
+                          comment.remove();
+                          Post.findByIdAndUpdate(post_id,{$pull:{comments:req.params.id}},function(err,post){
+                              return res.redirect('back');
+                          })
+                     }
+                     else{
+                        return res.redirect('back');
+                     }
+                }
+                else{
+                    return res.redirect('back');
+                }
+        })
 }
