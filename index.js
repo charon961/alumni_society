@@ -22,7 +22,7 @@ app.use(cookieParser());
 
 app.use("/assets", express.static(__dirname + '/assets'));
 
-
+//
 //setting view engine
 app.use(expressLayouts);
 //extract styles and scripts from sub pages and place it into the head of layout
