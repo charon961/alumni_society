@@ -22,7 +22,7 @@ module.exports.profile=function(req,res){
       //         res.redirect('/user/login');
       // }
 
-      res.render('user_profile');
+     return   res.render('user_profile');
         
 }
 module.exports.signup=function(req,res){
@@ -45,11 +45,17 @@ module.exports.login=function(req,res){
       });
 }
 module.exports.destroySession=function(req,res){
-
+      
       //inbuilt function in passport to desotrysession
+      // req.logout();
+      // req.flash('success','You have logout')
+      //       res.redirect('/');
+
       req.logout(function(err) {
             if (err) { return next(err); }
+            req.flash('success','You have logout')
             res.redirect('/');
+            
           });
 }
 
@@ -112,6 +118,7 @@ module.exports.viewpost=function(req,res){
        
 }
 module.exports.create_session=function(req,res){
+      req.flash('success','Logged in Successfully')
 
       //find the user
       //handle user found
@@ -147,7 +154,7 @@ module.exports.create_session=function(req,res){
 
      // passport Authentication
 
-     return res.redirect('/users/profile');
+     return res.redirect('/');
 }
 module.exports.writeblog=function(req,res){
       return res.render('blog');

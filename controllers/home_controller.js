@@ -2,7 +2,7 @@ const Post=require('../models/post');
 const User=require('../models/user')
 const body=require('body-parser');
 
-module.exports.home=function(req,res){
+module.exports.home= async function(req,res){
 //   Post.find({}).populate('user').populate({
 //     path:'user'
 //   }).exec(function(err,post){
@@ -62,5 +62,25 @@ module.exports.home=function(req,res){
     //       }
     //       )
     // })
+
+    
+//     try{
+
+//         let posts= await  Post.find({})
+//         .populate('user')
+
+//           let users=await User.find({});
+            
+//           return res.render('viewpost',{
+//               post:posts,
+//               user:users
+//             });
+
+        
+        
+
+//   }catch(err){
+//           console.log('Error in viewpost', err);
+//   }
 }
 

@@ -11,7 +11,9 @@ const path=require('path');
 
 const MongoStore=require('connect-mongo')(session);
 
+const flash=require('connect-flash');
 
+const customMware=require('./config/middleware')
 
 //body-parser
 app.use(express.urlencoded());
@@ -64,7 +66,8 @@ app.use(passport.setAuthenticated);
 
 //always keep at the end of layouts
 
-
+app.use(flash());
+app.use(customMware.setFlash);
 app.use('/',require('./routes'));
 
 app.listen(3000,function(err){
